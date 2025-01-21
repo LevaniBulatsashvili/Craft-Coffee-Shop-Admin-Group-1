@@ -1,15 +1,16 @@
 import { useContext, useEffect, useState } from "react";
 import PageContainer from "../layouts/PageContainer";
-import { useCoffeeContext } from "../contexts/CoffeeContext";
+import {  useCoffeeContext } from "../contexts/CoffeeContext";
 import useFetch from "../hooks/useFetch";
+  
 
 const  CoffeePage = () => {
-  const { coffees, addCoffee, editCoffee, deleteCoffee } = useCoffeeContext();//to recive data from contextApi
-  const [newCoffee, setNewCoffee]=useState('')// is empty when the component is first rendered
+  const { coffees, setCoffees } = useCoffeeContext('')// from contextApi
+  //const [newCoffee, setNewCoffee]=useState('')// is empty when the component is first rendered,
    const {data, loading, error,fetchData}=useFetch(
      "https://crudapi.co.uk/api/v1/coffees",
      'GET',
-     [],
+     []
    )
 
 
@@ -17,51 +18,55 @@ const  CoffeePage = () => {
 
 
  useEffect (() => {
-if (data&&data.length) {
-  addCoffee(data)
+if (data.length>0) {
+  setCoffees(data)
 }
-}, [data,addCoffee])
+ }, [data,setCoffees])
 
+if (loading) {
+  return <p>Loading...</p>
+}
 
+if (error){
+  return <p>Try again</p>
+}
 
- const handleAddCofee =()=>{
-  if (!newCoffee) return ;//if input isempty,doesnot addcoffee
-  
-  const coffee = {
-    _uuid: Date.now() ,//  unique identifier
-     title: newCoffee,
-
-  };
-  addCoffee(coffee);
-  setNewCoffee('')
- };
-
- const handleDelteCoffee = (coffeeId)=>{
-  deleteCoffee(coffeeId)// send coffeeId to coffeeContex and delete
- };
-
- const handleEditCoffee= (coffeeId) =>{
-   navigator(`coffee/manage?id=${coffeeId}`)
-  };
-  //error da damateba
   
   return (
     <PageContainer>
 
       <div>
-      <h1>Coffee Page</h1>
-      <input
-        type="text"
-        value={newCoffee}
-        onChange={(e) => setNewCoffee(e.target.value)}
-
-      />
-      <button onClick={handleAddCoffee}>Add Coffee</button>
-      <button onClick={() => {handleEditCoffee(coffee._uuid, "Updated Coffee Title")}}></button>
-      <button onClick={() => handleDeleteCoffee(coffee._uuid)}>Delete</button>
+      <h1>Coffee List</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Tittle</th>
+            <th>Image</th>
+            <th>Country</th>
+            <th>Caffeine</th>
+            <th>Total Price</th>
+          </tr>
+        </thead>
+        <tbody>
+        {coffees.map((coffee)=>(
+          <tr key={coffee.id}>
+            <td>
+              {coffee.title}
+              </td>
+            <td>
+            <img src={ coffee.img} alt={coffee.title}  />
+            </td>
+            <td>{coffee.country}</td>
+            <td>{coffee.caffeine} mg</td>
+            <td>{coffee.totalPrice} GEL</td>
+            </tr>
+        ))}
+            </tbody>
+      </table>
       </div>
-    </PageContainer>
-  );
-}
+
+     </PageContainer>
+     
+    )}
 
 export default CoffeePage;
