@@ -1,0 +1,28 @@
+.input {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.input > label {
+  text-transform: capitalize;
+}
+
+.input > input {
+  padding: 1rem;
+  border: 1px solid #cccccc;
+  border-radius: 0.5rem;
+}
+
+.input > input::placeholder {
+  text-transform: capitalize;
+}
+
+.input > p {
+  color: red;
+}
+
+.input > p::first-letter {
+  text-transform: capitalize;
+}

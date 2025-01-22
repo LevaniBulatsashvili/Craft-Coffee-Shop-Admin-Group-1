@@ -1,11 +1,11 @@
 import PageContainer from "../layouts/PageContainer";
 
-function IngredientsPage() {
+function IngredientManagePage() {
   return (
     <PageContainer>
-      <div>IngredientsPage</div>
+      <div>IngredientManagePage</div>
     </PageContainer>
   );
 }
 
-export default IngredientsPage;
+export default IngredientManagePage;

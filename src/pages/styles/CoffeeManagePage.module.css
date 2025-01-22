@@ -1,0 +1,9 @@
+.coffee-manage {
+  padding: 2.5rem;
+  border: 1px solid black;
+}
+
+.coffee-manage > h1 {
+  text-transform: capitalize;
+  margin-bottom: 2.5rem;
+}
