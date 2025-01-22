@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import PageContainer from "../layouts/PageContainer";
 import {  useCoffeeContext } from "../contexts/CoffeeContext";
 import useFetch from "../hooks/useFetch";
+import { useNavigate } from "react-router-dom";
   
 
 const  CoffeePage = () => {
@@ -13,7 +14,7 @@ const  CoffeePage = () => {
    )
    console.log(data)
 
-
+   const navigate= useNavigate()
 
  useEffect (() => {
   
@@ -21,6 +22,7 @@ if (data.length>0) {
   setCoffees(data)
 }
  }, [data,setCoffees])
+
 
 if (loading) {
   return <p>Loading...</p>
@@ -30,22 +32,26 @@ if (error){
   return <p>Try again</p>
 }
 
-  
+
+
 const handleEdit = (id) => {
-  window.location.href = `/coffee/manage?id=${id}`;
+  navigate(`/coffee/manage?id=${id}`);
 };
 
-const handleAdd = () => {
-  window.location.href = "/coffee/manage";
+const handleAddButton = () => {
+  navigate(`/coffee/manage`);
+};
+
+const handleGoToIngredients = () => {
+  navigate("/ingredients");
 };
   return (
     <PageContainer>
 
       <div>
       <h1>Coffee List</h1>
-      <button onClick={handleAdd}>
-          Add Coffee
-        </button>
+      <button onClick={handleAddButton}>Add Coffee</button>
+      <button onClick={handleGoToIngredients}> Ingredients</button>
       <table>
         <thead>
           <tr>
@@ -59,7 +65,7 @@ const handleAdd = () => {
         </thead>
         <tbody>
         {coffees.map((coffee)=>(
-          <tr key={coffee.id}>
+          <tr key={coffee._uuid}>
             <td>
               {coffee.title}
               </td>

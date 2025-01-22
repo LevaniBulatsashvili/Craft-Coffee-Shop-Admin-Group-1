@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useCoffeeContext } from "../contexts/CoffeeContext";
 import useFetch from "../hooks/useFetch";
 import PageContainer from "../layouts/PageContainer";
+import {  useNavigate } from "react-router-dom";
 
 const  IngredientsPage = () => {
   const { ingredients, setIngredients,  }=useCoffeeContext()
@@ -10,7 +11,8 @@ const  IngredientsPage = () => {
     "GET", 
     []
   );
-  console.log(data)
+  const navigate = useNavigate ()
+
   
   useEffect(() => {
     if (data.length > 0) {
@@ -26,10 +28,12 @@ const  IngredientsPage = () => {
     return <p>Error fetching ingredients. Try again.</p>;
   }
 
-  const handleAdd = () => {
-    window.location.href = '/coffee'; 
+  
+    const handleAdd = () => {
+    navigate(`/coffee`);
   };
- 
+
+
   return (
     <PageContainer>
       <div>
@@ -45,7 +49,7 @@ const  IngredientsPage = () => {
           </thead>
           <tbody>
             {ingredients.map((ingredient) => (
-              <tr key={ingredient.id}>
+              <tr key={ingredient._uuid}>
                 <td>{ingredient.name}</td>
                 <td>{ingredient.price} GEL</td>
                 <td>{ingredient.flavor}</td>
