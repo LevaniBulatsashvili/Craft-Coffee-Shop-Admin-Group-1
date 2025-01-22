@@ -22,7 +22,7 @@ function App() {
 
 return (
   <CoffeeContextProvider>
-      <CoffeePage/>
+      <IngredientsPage/>
 
 </CoffeeContextProvider>
 )

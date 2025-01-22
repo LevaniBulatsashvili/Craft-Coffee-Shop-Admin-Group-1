@@ -5,19 +5,19 @@ import useFetch from "../hooks/useFetch";
   
 
 const  CoffeePage = () => {
-  const { coffees, setCoffees } = useCoffeeContext('')// from contextApi
+  const { coffees, setCoffees } = useCoffeeContext()// from contextApi
   //const [newCoffee, setNewCoffee]=useState('')// is empty when the component is first rendered,
-   const {data, loading, error,fetchData}=useFetch(
+   const {data, loading, error}=useFetch(
      "https://crudapi.co.uk/api/v1/coffees",
      'GET',
      []
    )
-
-
+   console.log(data)
 
 
 
  useEffect (() => {
+  console.log('Fetched data:', data);
 if (data.length>0) {
   setCoffees(data)
 }
@@ -32,6 +32,10 @@ if (error){
 }
 
   
+const handleEdit = (id) => {
+  // Redirect to /coffee/manage?id={id}
+  window.location.href = `/coffee/manage?id=${id}`;
+};
   return (
     <PageContainer>
 
@@ -45,6 +49,7 @@ if (error){
             <th>Country</th>
             <th>Caffeine</th>
             <th>Total Price</th>
+            <th>Edit</th>
           </tr>
         </thead>
         <tbody>
@@ -59,6 +64,9 @@ if (error){
             <td>{coffee.country}</td>
             <td>{coffee.caffeine} mg</td>
             <td>{coffee.totalPrice} GEL</td>
+            <td>
+              <button onClick={()=> handleEdit(coffee.id)}> Edit</button>
+              </td>
             </tr>
         ))}
             </tbody>

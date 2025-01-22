@@ -1,6 +1,6 @@
 import { createContext, useContext, useMemo, useState } from "react";
 
-const CoffeeContext = createContext(null);
+ const CoffeeContext = createContext(null);
 
 const CoffeeContextProvider = ({ children }) => {
   const [coffees, setCoffees] = useState([]);
@@ -65,3 +65,7 @@ export const useCoffeeContext = () => {
 };
 
 export default CoffeeContextProvider;
+  
+
+
+
