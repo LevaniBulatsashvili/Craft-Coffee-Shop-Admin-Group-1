@@ -1,9 +1,3 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
  .nav {
     padding: 20px;
     height: 640px;
@@ -41,8 +35,8 @@
   }
   
   .active {
-    background-color: #010b16;
-    color: white;
+    background-color: white;
+    color: black;
     font-weight: bold;
   }
   

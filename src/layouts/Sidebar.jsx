@@ -14,7 +14,7 @@ function Sidebar() {
   return <nav className={styles.nav}> 
     <h1 className={styles.title}>Admin Console</h1>
     
-    <Link to={'/'} className={`${styles.link} ${activeLink === 'coffee' ? styles.active : ''}`}
+    <Link to={'/coffee'} className={`${styles.link} ${activeLink === 'coffee' ? styles.active : ''}`}
         onClick={() => handleLinkClick('coffee')}> <FaCoffee className={styles.icon} />coffee</Link>
 
     <Link to={'/ingredients'}  className={`${styles.link} ${activeLink === 'ingredients' ? styles.active : ''}`}
