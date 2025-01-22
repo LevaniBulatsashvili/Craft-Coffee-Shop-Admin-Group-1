@@ -76,7 +76,6 @@ function Form({ coffeeId }) {
 
     const coffee = {
       title: titleRef.current.value,
-      country: countryRef.current.value,
       caffeine: caffeineRef.current.value,
       country: countryRef.current.value,
       description: descriptionRef.current.value,
