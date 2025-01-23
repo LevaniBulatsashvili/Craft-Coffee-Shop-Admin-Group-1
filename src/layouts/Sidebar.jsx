@@ -3,11 +3,12 @@ import styles from "./styles/Sidebar.module.css";
 import React from "react";
 import { FaCoffee, FaUtensils } from "react-icons/fa";
 
+
 function Sidebar() {
   const location = useLocation();
 
   return (
-    <aside className={styles.sidebar}>
+    <aside className={styles.Sidebar}>
       <h1 className={styles.title}>Admin Console</h1>
 
       <nav className={styles.nav}>
