@@ -1,6 +1,7 @@
 import styles from "./styles/CoffeeManagePage.module.css";
 import Form from "../features/coffee-manage/components/Form/Form";
 import { useLocation } from "react-router-dom";
+import PageContainer from "../layouts/PageContainer";
 
 function CoffeeManagePage() {
   const location = useLocation();
@@ -8,11 +9,13 @@ function CoffeeManagePage() {
   const coffeeId = queryParams.get("id");
 
   return (
-    <div className={styles["coffee-manage"]}>
-      <h1>{coffeeId ? "edit" : "add"} coffee</h1>
+    <PageContainer>
+      <div className={styles["coffee-manage"]}>
+        <h1>{coffeeId ? "edit" : "add"} coffee</h1>
 
-      <Form coffeeId={coffeeId} />
-    </div>
+        <Form coffeeId={coffeeId} />
+      </div>
+    </PageContainer>
   );
 }
 
