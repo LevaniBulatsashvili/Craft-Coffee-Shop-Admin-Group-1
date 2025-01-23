@@ -13,6 +13,7 @@
   all: unset;
   resize: none;
   color: #000000cc;
+  text-transform: capitalize;
   height: 10rem;
   padding: 1rem;
   border: 1px solid #cccccc;
