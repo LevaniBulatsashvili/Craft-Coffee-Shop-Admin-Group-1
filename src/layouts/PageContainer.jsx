@@ -1,8 +1,7 @@
-import styles from  './styles/PageContainer.module.css';
+import styles from "./styles/PageContainer.module.css";
 
 function PageContainer({ children }) {
-  return <main className={styles.main}>
-    {children}</main>;
+  return <main className={styles.main}>{children}</main>;
 }
 
 export default PageContainer;

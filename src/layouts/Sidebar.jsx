@@ -1,26 +1,36 @@
-import { Link } from "react-router-dom"
-import styles from  './styles/Sidebar.module.css';
-import React, { useState } from 'react';
-import { FaCoffee, FaUtensils } from 'react-icons/fa';
+import { Link, useLocation } from "react-router-dom";
+import styles from "./styles/Sidebar.module.css";
+import React from "react";
+import { FaCoffee, FaUtensils } from "react-icons/fa";
 
 function Sidebar() {
-  const [activeLink, setActiveLink] = useState(null);
+  const location = useLocation();
 
-  const handleLinkClick = (linkName) => {
-    setActiveLink(linkName); 
-  };
+  return (
+    <aside className={styles.sidebar}>
+      <h1 className={styles.title}>Admin Console</h1>
 
+      <nav className={styles.nav}>
+        <Link
+          className={location.pathname.includes("/coffee") ? styles.active : ""}
+          to={"/coffee"}
+        >
+          <FaCoffee className={styles.icon} />
+          coffee
+        </Link>
 
-  return <nav className={styles.nav}> 
-    <h1 className={styles.title}>Admin Console</h1>
-    
-    <Link to={'/coffee'} className={`${styles.link} ${activeLink === 'coffee' ? styles.active : ''}`}
-        onClick={() => handleLinkClick('coffee')}> <FaCoffee className={styles.icon} />coffee</Link>
-
-    <Link to={'/ingredients'}  className={`${styles.link} ${activeLink === 'ingredients' ? styles.active : ''}`}
-        onClick={() => handleLinkClick('ingredients')}> <FaUtensils className={styles.icon} />ingredients</Link>
-
-  </nav>;
+        <Link
+          className={
+            location.pathname.includes("/ingredient") ? styles.active : ""
+          }
+          to={"/ingredient"}
+        >
+          <FaUtensils className={styles.icon} />
+          ingredients
+        </Link>
+      </nav>
+    </aside>
+  );
 }
 
 export default Sidebar;
