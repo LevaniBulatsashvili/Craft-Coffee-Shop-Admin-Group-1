@@ -1,27 +1,36 @@
- .nav {
-    padding: 20px;
-    height: 640px;
-    width: 220px;
-    background-color: #111111;
-    border-color: white;
-    gap: 32px;
+  .Sidebar{
+    padding: 40px 24px;
+    height: 100%;
+    min-width: 350px;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
   }
-  
+
+  .sidebar > h1{
+    color: #f4f4f4;
+    font-weight: 400;
+  }
+
   .title {
     font-size: 24px;
     color: white;
-    margin-bottom: 16px;
+    margin-bottom: 32px;
   }
 
-  .link {
-    display: block;
+  .nav a{
+    display: flex;
     align-items: center;
     color: white;
     text-decoration: none;
+    text-transform: capitalize;
     font-size: 20px;
-    padding: 8px;
-    border-radius: 4px;
-    transition: background-color 0.3s, color 0.3s;
+    padding: 12px 8px;
+    border-radius: 8px;
+  }
+
+  .nav a:last-child{
+    margin-top: 20px;
   }
 
   .icon {
@@ -29,15 +38,8 @@
     font-size: 1em; 
   }
   
-  .link:hover {
-    background-color: #f0f0f0;
-    color: rgb(24, 24, 26);
-  }
-  
   .active {
-    background-color: white;
-    color: black;
-    font-weight: bold;
+    background-color: #598eda;
   }
   
 

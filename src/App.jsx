@@ -13,7 +13,7 @@ function App() {
        
         <Routes>
           <Route path="/coffee" element={<CreateCoffeePage />} />
-          <Route path="/ingredients" element={<IngredientsPage />} />
+          <Route path="/ingredient" element={<IngredientsPage />} />
         </Routes>
       </div>
     </CoffeeContextProvider>
