@@ -1,0 +1,13 @@
+.form {
+  height: 80dvh;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  padding: 4.4rem;
+}
+
+.form > div:first-child {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+}

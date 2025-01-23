@@ -8,10 +8,10 @@ import DropdownInput from "./DropdownInput";
 import Input from "../../../../components/Input";
 import TextareaInput from "../../../../components/TextareaInput";
 import Control from "../../../../components/Control";
-import validateText from "../../validations/validateText";
-import validateNumber from "../../validations/validateNumber";
-import validateTextarea from "../../validations/validateTextaria";
-import validateDropdown from "../../validations/validateDropdown";
+import validateText from "../../../../validations/validateText";
+import validateNumber from "../../../../validations/validateNumber";
+import validateTextarea from "../../../../validations/validateTextaria";
+import validateDropdown from "../../../../validations/validateDropdown";
 
 function Form({ coffeeId }) {
   const navigate = useNavigate();
@@ -37,7 +37,10 @@ function Form({ coffeeId }) {
   useEffect(() => {
     if (coffeeId) {
       const coffeeToEdit = findCoffee(coffeeId);
-      coffeeToEdit ? setCoffee(coffeeToEdit) : navigate("/coffee/manage");
+      if (coffeeToEdit) {
+        setCoffee(coffeeToEdit);
+        setSelectedIngredients(coffeeToEdit.ingredients);
+      } else navigate("/coffee/manage");
     }
   }, []);
 
@@ -141,8 +144,9 @@ function Form({ coffeeId }) {
           />
           <TextareaInput
             name="description"
-            error={errors.description}
             textareaRef={descriptionRef}
+            defaultValue={coffee && coffee.description}
+            error={errors.description}
           />
         </div>
       </div>

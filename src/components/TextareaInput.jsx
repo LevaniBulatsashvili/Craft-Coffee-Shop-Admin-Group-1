@@ -1,6 +1,6 @@
 import styles from "./styles/TextareaInput.module.css";
 
-function TextareaInput({ name, textareaRef, error }) {
+function TextareaInput({ name, textareaRef, defaultValue, error }) {
   return (
     <div className={styles["textarea-input"]}>
       <label htmlFor="description">{name}</label>
@@ -8,10 +8,15 @@ function TextareaInput({ name, textareaRef, error }) {
         type="text"
         id={name}
         name={name}
-        placeholder={name}
+        placeholder={`enter ${name}`}
+        defaultValue={defaultValue}
         ref={textareaRef}
       />
-      {error && <p>{name} {error}</p>}
+      {error && (
+        <p>
+          {name} {error}
+        </p>
+      )}
     </div>
   );
 }
