@@ -1,4 +1,5 @@
 .form {
+  height: 80dvh;
   display: flex;
   flex-direction: column;
   background-color: #ffffff;
