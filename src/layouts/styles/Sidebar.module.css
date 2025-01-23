@@ -1,0 +1,46 @@
+  .Sidebar{
+    padding: 40px 24px;
+    height: 100%;
+    min-width: 350px;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar > h1{
+    color: #f4f4f4;
+    font-weight: 400;
+  }
+
+  .title {
+    font-size: 24px;
+    color: white;
+    margin-bottom: 32px;
+  }
+
+  .nav a{
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    text-transform: capitalize;
+    font-size: 20px;
+    padding: 12px 8px;
+    border-radius: 8px;
+  }
+
+  .nav a:last-child{
+    margin-top: 20px;
+  }
+
+  .icon {
+    margin-right: 8px; 
+    font-size: 1em; 
+  }
+  
+  .active {
+    background-color: #598eda;
+  }
+  
+
+  

@@ -10,7 +10,7 @@ import IngredientManagePage from "./pages/IngredientManagePage";
 function App() {
   return (
     <CoffeeContextProvider>
-      <div>
+      <div className="app">
         <SideBar />
         <Routes>
           <Route path="/" element={<Navigate to="/coffee" replace />} />
