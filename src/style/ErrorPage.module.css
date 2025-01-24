@@ -1,0 +1,23 @@
+/* NotFound.module.css */
+
+.container {
+    text-align: center;
+    padding: 50px;
+  }
+  
+  .heading {
+    font-size: 3rem;
+    color: #FF6347;
+  }
+  
+  .message {
+    font-size: 1.5rem;
+    color: #555;
+  }
+  
+  .link {
+    font-size: 1rem;
+    color: #1D69E4;
+    text-decoration: none;
+  }
+  

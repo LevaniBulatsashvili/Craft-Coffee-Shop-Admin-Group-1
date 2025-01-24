@@ -5,6 +5,7 @@ import CreateCoffeePage from "./pages/CoffeePage";
 import IngredientsPage from "./pages/IngredientsPage";
 import CoffeeContextProvider from "./contexts/CoffeeContext";
 import CoffeePage from "./pages/CoffeePage";
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
         <Route path="/" element={<Navigate to="/coffee" replace />}/>
            <Route path="/coffee" element={<CoffeePage />} />
            <Route path="/ingredients" element={<IngredientsPage />} />
-          
+          <Route path="*" element={<ErrorPage/>}/>
         </Routes>
       </div>
     </CoffeeContextProvider>
