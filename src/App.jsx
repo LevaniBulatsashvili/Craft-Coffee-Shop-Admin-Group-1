@@ -12,7 +12,7 @@ function App() {
       <div>
         <SideBar />
         <Routes>
-        {/* <Route path="/" element={<Navigate to="/coffee" replace />}/> */}
+        <Route path="/" element={<Navigate to="/coffee" replace />}/>
            <Route path="/coffee" element={<CoffeePage />} />
            <Route path="/ingredients" element={<IngredientsPage />} />
           

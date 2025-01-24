@@ -3,6 +3,8 @@ import { useCoffeeContext } from "../contexts/CoffeeContext";
 import useFetch from "../hooks/useFetch";
 import PageContainer from "../layouts/PageContainer";
 import {  useNavigate } from "react-router-dom";
+import styles from '../style/CoffeePage.module.css';
+
 
 const  IngredientsPage = () => {
   const { ingredients, setIngredients,  }=useCoffeeContext()
@@ -36,9 +38,9 @@ const  IngredientsPage = () => {
 
   return (
     <PageContainer>
-      <div>
-      <h1>Ingredient List</h1>
-        <table>
+      <div  className={styles.container}>
+      <h1 className={styles.heading}>Ingredient List</h1>
+      <table className={styles.table}>
           <thead>
             <tr>
               <th>Name</th>
@@ -54,7 +56,7 @@ const  IngredientsPage = () => {
                 <td>{ingredient.price} GEL</td>
                 <td>{ingredient.flavor}</td>
                 <td>
-                <button onClick={handleAdd}>Add Coffe</button>
+                <button onClick={handleAdd}  className={styles.addButton}>Add Coffe</button>
                 </td>
               </tr>
             ))}

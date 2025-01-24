@@ -3,6 +3,8 @@ import PageContainer from "../layouts/PageContainer";
 import {  useCoffeeContext } from "../contexts/CoffeeContext";
 import useFetch from "../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
+import styles from '../style/CoffeePage.module.css';
+
   
 
 const  CoffeePage = () => {
@@ -45,44 +47,47 @@ const handleAddButton = () => {
 const handleGoToIngredients = () => {
   navigate("/ingredients");
 };
-  return (
-    <PageContainer>
 
-      <div>
-      <h1>Coffee List</h1>
+  return (
+    <PageContainer >
+     
+     <div className={styles.container}>
+     
+      <h1 className={styles.heading}>Coffee List</h1>
       <button onClick={handleAddButton}>Add Coffee</button>
-      <button onClick={handleGoToIngredients}> Ingredients</button>
-      <table>
-        <thead>
-          <tr>
-            <th>Tittle</th>
-            <th>Image</th>
-            <th>Country</th>
-            <th>Caffeine</th>
-            <th>Total Price</th>
-            <th>Edit</th>
-          </tr>
-        </thead>
-        <tbody>
-        {coffees.map((coffee)=>(
+      <button onClick={handleGoToIngredients} > Ingredients</button>
+      <table className={styles.table}>
+      <thead >
+        <tr>
+          <th>Title</th>
+          <th>Image</th>
+          <th>Country</th>
+          <th>Caffeine</th>
+          <th>Total Price</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        {coffees.map((coffee) => (
           <tr key={coffee._uuid}>
-            <td>
-              {coffee.title}
-              </td>
-            <td>
-            <img src={ coffee.img} alt={coffee.title}  />
+            <td >{coffee.title}</td>
+            <td >  <img className={styles.image} src={coffee.img} alt={coffee.title} />
+             </td>
+            <td >{coffee.country}</td>
+            <td >{coffee.caffeine} mg</td>
+            <td >{coffee.totalPrice} GEL</td>
+            <td >
+             <button onClick={() => handleEdit(coffee.id)}>
+                Edit
+              </button>
             </td>
-            <td>{coffee.country}</td>
-            <td>{coffee.caffeine} mg</td>
-            <td>{coffee.totalPrice} GEL</td>
-            <td>
-              <button onClick={()=> handleEdit(coffee.id)}> Edit</button>
-              </td>
-            </tr>
+          </tr>
         ))}
-            </tbody>
-      </table>
+      </tbody>
+    </table>
       </div>
+      
+      
 
      </PageContainer>
      
