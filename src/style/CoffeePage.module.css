@@ -1,7 +1,26 @@
-.container {
-  padding: 20px;
-  font-family: Arial, sans-serif;
-  background-color: #f7f7f7;
+.desktop{
+
+position: relative;
+width: 1920px;
+height: 1200px;
+
+background: #F1F1F1;
+
+}
+.container{
+/* Frame 12 */
+
+position: absolute;
+width: 1490px;
+height: 1040px;
+left: 390px;
+top: 120px;
+
+background: #FFFFFF;
+
+
+
+
 }
 
 .heading {
@@ -19,15 +38,17 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+
+
 th, td {
   padding: 12px;
   text-align: left;
-  border: 1px solid #ddd;
+  border: 1px solid #ffffff;
 }
 
 th {
-  background-color: #1d69e4;
-  color: white;
+  background-color: hsl(0, 0%, 100%);
+  color: black;
 }
 
 td img {
@@ -37,11 +58,11 @@ td img {
 }
 
 tr:nth-child(even) {
-  background-color: #f9f9f9;
+  background-color: hsl(0, 0%, 100%);
 }
 
 tr:hover {
-  background-color: #f1f1f1;
+  background-color:  #ffffff;
 }
 
 .editButton {
@@ -56,4 +77,39 @@ tr:hover {
 
 .editButton:hover {
   background-color: #165bb0;
+}
+
+
+.coffeeContainer {
+ 
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 0px;
+gap: 1009px;
+
+position: absolute;
+width: 1490px;
+height: 56px;
+left: 390px;
+top: 34px;
+
+
+}
+
+.coffeeContainer h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.addCoffeeButton {
+  padding: 10px 20px;
+  background-color: #1D69E4;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
 }

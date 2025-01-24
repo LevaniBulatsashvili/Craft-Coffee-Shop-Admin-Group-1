@@ -46,6 +46,7 @@ const  IngredientsPage = () => {
               <th>Name</th>
               <th>Price</th>
               <th>Flavor</th>
+              <th>Add</th>
             
             </tr>
           </thead>

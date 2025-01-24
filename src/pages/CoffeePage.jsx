@@ -50,13 +50,15 @@ const handleGoToIngredients = () => {
 
   return (
     <PageContainer >
-     
-     <div className={styles.container}>
-     
-      <h1 className={styles.heading}>Coffee List</h1>
-      <button onClick={handleAddButton}>Add Coffee</button>
+     <div className={styles.desktop}>
+     <div className={styles.coffeeContainer}>
+      <h1>Coffee List</h1>
+      <button onClick={handleAddButton}  className={styles.addCoffeeButton}>Add Coffee</button>
+    </div>
       <button onClick={handleGoToIngredients} > Ingredients</button>
+      <div className={styles.container}>
       <table className={styles.table}>
+  
       <thead >
         <tr>
           <th>Title</th>
@@ -67,6 +69,7 @@ const handleGoToIngredients = () => {
           <th>Edit</th>
         </tr>
       </thead>
+      
       <tbody>
         {coffees.map((coffee) => (
           <tr key={coffee._uuid}>
@@ -85,6 +88,7 @@ const handleGoToIngredients = () => {
         ))}
       </tbody>
     </table>
+      </div>
       </div>
       
       
