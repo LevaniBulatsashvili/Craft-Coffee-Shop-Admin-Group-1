@@ -3,10 +3,12 @@ import { useCoffeeContext } from "../contexts/CoffeeContext";
 import useFetch from "../hooks/useFetch";
 import PageContainer from "../layouts/PageContainer";
 import {  useNavigate } from "react-router-dom";
-import styles from '../style/CoffeePage.module.css';
+import styles from "./styles/CoffeePage.module.css";
 
 
-const  IngredientsPage = () => {
+
+
+const  IngredientPage = () => {
   const { ingredients, setIngredients,  }=useCoffeeContext()
   const { data, loading, error, fetchData } = useFetch(
     "https://crudapi.co.uk/api/v1/ingredients", 
@@ -70,7 +72,7 @@ const  IngredientsPage = () => {
 
     
 
-export default IngredientsPage;
+export default IngredientPage;
 
 
 

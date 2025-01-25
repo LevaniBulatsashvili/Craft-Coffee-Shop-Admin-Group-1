@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom'
-import styles from '../style/CoffeePage.module.css';
+import styles from './styles/ErrorPage.module.css';
 
 const ErrorPage =()=>{
 return (
