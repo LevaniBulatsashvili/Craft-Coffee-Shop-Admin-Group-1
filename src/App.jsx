@@ -6,6 +6,7 @@ import CoffeePage from "./pages/CoffeePage";
 import IngredientPage from "./pages/IngredientPage";
 import CoffeeManagePage from "./pages/CoffeeManagePage";
 import IngredientManagePage from "./pages/IngredientManagePage";
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
   return (
@@ -18,10 +19,13 @@ function App() {
           <Route path="/ingredient" element={<IngredientPage />} />
           <Route path="/coffee/manage" element={<CoffeeManagePage />} />
           <Route path="/ingredient/manage" element={<IngredientManagePage />} />
+          <Route path="*" element={<ErrorPage/>}/>
         </Routes>
       </div>
     </CoffeeContextProvider>
   );
 }
+
+
 
 export default App;

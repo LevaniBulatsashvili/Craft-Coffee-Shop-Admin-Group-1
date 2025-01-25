@@ -32,6 +32,7 @@ function Sidebar() {
       </nav>
     </aside>
   );
+
 }
 
 export default Sidebar;
