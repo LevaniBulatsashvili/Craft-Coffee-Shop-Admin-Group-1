@@ -1,11 +1,86 @@
 import PageContainer from "../layouts/PageContainer";
+import { useEffect } from "react";
+import { useCoffeeContext } from "../contexts/CoffeeContext";
+import useFetch from "../hooks/useFetch";
+import { useNavigate } from "react-router-dom";
+import styles from "./styles/IngredientPage.module.css";
+import coffeeImg from "../assets/coffee.webp";
+import Error from "../components/Error";
+import Spinner from "../components/Spinner";
 
-function IngredientPage() {
-  return (
+  const IngredientsPage = () => {
+    const { ingredients, setIngredients } = useCoffeeContext();
+    const { data, loading, error } = useFetch(
+      "https://crudapi.co.uk/api/v1/ingredients",
+      "GET",
+      []
+    );
+    const navigate = useNavigate();
+  
+    useEffect(() => {
+      if (data.length > 0) {
+        setIngredients(data);
+      }
+    }, [data, setIngredients]);
+  
+    if (loading) {
+      return <Spinner />;
+    }
+  
+    if (error) {
+      return <Error text={error.message} />;
+    }
+  
+    const handleEdit = (id) => {
+      navigate(`/ingredient/manage?id=${id}`);
+    };
+  
+    const handleAddButton = () => {
+      navigate(`/ingredient/manage`);
+    };
+  
+
+
+
+   return (
     <PageContainer>
-      <div>IngredientPage</div>
+      <div className={styles.ingredientList}>
+        <h1>Ingredient List</h1>
+        <button onClick={handleAddButton}>Add Ingredient</button>
+      </div>
+
+      <div className={styles.container}>
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              <th>Ingredient Name</th>
+              <th>Price</th>
+              <th>Flavor</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {ingredients.map((ingredient) => (
+              <tr key={ingredient._uuid}>
+                <td>
+                  <img src={coffeeImg} alt="ingredient image" />
+                  {ingredient.name}
+                </td>
+                <td>{ingredient.price}</td>
+                <td>{ingredient.flavor}</td>
+                <td>
+                  <button onClick={() => handleEdit(ingredient._uuid)}>
+                    See details
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </PageContainer>
   );
-}
+};
 
-export default IngredientPage;
+export default IngredientsPage;
