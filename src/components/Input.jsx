@@ -11,6 +11,7 @@ function Input({ name, type = "text", inputRef, defaultValue, error }) {
         placeholder={`enter ${name}`}
         ref={inputRef}
         defaultValue={defaultValue}
+        step="any"
       />
       {error && (
         <p>

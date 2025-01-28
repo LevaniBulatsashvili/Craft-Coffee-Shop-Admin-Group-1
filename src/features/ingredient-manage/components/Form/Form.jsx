@@ -9,10 +9,12 @@ import Control from "../../../../components/Control";
 import validateText from "../../../../validations/validateText";
 import validateNumber from "../../../../validations/validateNumber";
 import validateTextarea from "../../../../validations/validateTextaria";
+import Spinner from "../../../../components/Spinner";
+import Error from "../../../../components/Error";
 
 function Form({ ingredientId }) {
   const navigate = useNavigate();
-  const { sendRequest } = useRequest();
+  const { sendRequest, loading, error } = useRequest();
   const [ingredient, setIngredient] = useState(null);
   const { findIngredient, addIngredient, editIngredient, deleteIngredient } =
     useCoffeeContext();
@@ -29,7 +31,7 @@ function Form({ ingredientId }) {
     price: null,
     description: null,
   });
-  //
+
   useEffect(() => {
     if (ingredientId) {
       const ingredientToEdit = findIngredient(ingredientId);
@@ -38,6 +40,26 @@ function Form({ ingredientId }) {
         : navigate("/ingredient/manage");
     }
   }, []);
+
+  const postIngredient = async (ingredient) => {
+    const res = await sendRequest(
+      "https://crudapi.co.uk/api/v1/ingredients",
+      "POST",
+      [ingredient]
+    );
+    addIngredient(res);
+    navigate("/ingredient");
+  };
+
+  const putIngredient = async (ingredient) => {
+    const res = await sendRequest(
+      `https://crudapi.co.uk/api/v1/ingredients/${ingredientId}`,
+      "PUT",
+      ingredient
+    );
+    editIngredient(res);
+    navigate("/ingredient");
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -65,32 +87,21 @@ function Form({ ingredientId }) {
       description: descriptionRef.current.value,
     };
 
-    if (!ingredientId) {
-      sendRequest("https://crudapi.co.uk/api/v1/ingredients", "POST", [
-        ingredient,
-      ]);
-      // addIngredient(ingredient); wont work properly since _uuid wont be available
-    } else {
-      ingredient._uuid = ingredientId;
-      sendRequest(
-        `https://crudapi.co.uk/api/v1/ingredients/${ingredientId}`,
-        "PUT",
-        ingredient
-      );
-      editIngredient(ingredient); // wont be the true ingredient data since its missing alot of keys given by the backend
-    }
-
-    navigate("/ingredient");
+    if (!ingredientId) postIngredient(ingredient);
+    else putIngredient(ingredient);
   };
 
-  const onIngredientDelete = (ingredientId) => {
-    sendRequest(
+  const onIngredientDelete = async (ingredientId) => {
+    const res = await sendRequest(
       `https://crudapi.co.uk/api/v1/ingredients/${ingredientId}`,
       "DELETE"
     );
     deleteIngredient(ingredientId);
     navigate("/ingredient");
   };
+
+  if (loading) return <Spinner />;
+  if (error) return <Error text={error.message} />;
 
   return (
     <form className={styles["form"]} onSubmit={onSubmit}>

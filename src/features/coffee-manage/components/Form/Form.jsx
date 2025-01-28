@@ -12,10 +12,12 @@ import validateText from "../../../../validations/validateText";
 import validateNumber from "../../../../validations/validateNumber";
 import validateTextarea from "../../../../validations/validateTextaria";
 import validateDropdown from "../../../../validations/validateDropdown";
+import Spinner from "../../../../components/Spinner";
+import Error from "../../../../components/Error";
 
 function Form({ coffeeId }) {
   const navigate = useNavigate();
-  const { sendRequest } = useRequest();
+  const { sendRequest, loading, error } = useRequest();
   const [coffee, setCoffee] = useState(null);
   const { ingredients, findCoffee, addCoffee, editCoffee, deleteCoffee } =
     useCoffeeContext();
@@ -53,6 +55,26 @@ function Form({ coffeeId }) {
         : [selectedIngredient, ...prev]
     );
 
+  const postCoffee = async (coffee) => {
+    const res = await sendRequest(
+      "https://crudapi.co.uk/api/v1/coffees",
+      "POST",
+      [coffee]
+    );
+    addCoffee(res);
+    navigate("/coffee");
+  };
+
+  const putCoffee = async (coffee) => {
+    const res = await sendRequest(
+      `https://crudapi.co.uk/api/v1/coffees/${coffeeId}`,
+      "PUT",
+      coffee
+    );
+    editCoffee(res);
+    navigate("/coffee");
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
 
@@ -86,27 +108,18 @@ function Form({ coffeeId }) {
       ingredients: selectedIngredients,
     };
 
-    if (!coffeeId) {
-      sendRequest("https://crudapi.co.uk/api/v1/coffees", "POST", [coffee]);
-      // addCoffee(coffee); wont work properly since _uuid wont be available
-    } else {
-      coffee._uuid = coffeeId;
-      sendRequest(
-        `https://crudapi.co.uk/api/v1/coffees/${coffeeId}`,
-        "PUT",
-        coffee
-      );
-      editCoffee(coffee); // wont be the true coffee data since its missing alot of keys given by the backend
-    }
-
-    navigate("/coffee");
+    if (!coffeeId) postCoffee(coffee);
+    else putCoffee(coffee);
   };
 
-  const onCoffeeDelete = (coffeeId) => {
-    sendRequest(`https://crudapi.co.uk/api/v1/coffees/${coffeeId}`, "DELETE");
+  const onCoffeeDelete = async (coffeeId) => {
+    const res = await sendRequest(`https://crudapi.co.uk/api/v1/coffees/${coffeeId}`, "DELETE");
     deleteCoffee(coffeeId);
     navigate("/coffee");
   };
+
+  if (loading) return <Spinner />;
+  if (error) return <Error text={error.message} />;
 
   return (
     <form className={styles["form"]} onSubmit={onSubmit}>
