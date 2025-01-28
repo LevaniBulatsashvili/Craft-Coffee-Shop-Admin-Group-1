@@ -4,45 +4,31 @@ import { useCoffeeContext } from "../contexts/CoffeeContext";
 import useFetch from "../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles/IngredientPage.module.css";
-import coffeeImg from "../assets/coffee.webp";
+import ingredientImg from "../assets/ingredient.png";
 import Error from "../components/Error";
 import Spinner from "../components/Spinner";
 
-  const IngredientsPage = () => {
-    const { ingredients, setIngredients } = useCoffeeContext();
-    const { data, loading, error } = useFetch(
-      "https://crudapi.co.uk/api/v1/ingredients",
-      "GET",
-      []
-    );
-    const navigate = useNavigate();
-  
-    useEffect(() => {
-      if (data.length > 0) {
-        setIngredients(data);
-      }
-    }, [data, setIngredients]);
-  
-    if (loading) {
-      return <Spinner />;
+const IngredientsPage = () => {
+  const { ingredients, setIngredients } = useCoffeeContext();
+  const {
+    data,
+    loading: ingredientsLoading,
+    error: ingredientsErr,
+  } = useFetch("https://crudapi.co.uk/api/v1/ingredients", "GET", []);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (data.length > 0) {
+      setIngredients(data);
     }
-  
-    if (error) {
-      return <Error text={error.message} />;
-    }
-  
-    const handleEdit = (id) => {
-      navigate(`/ingredient/manage?id=${id}`);
-    };
-  
-    const handleAddButton = () => {
-      navigate(`/ingredient/manage`);
-    };
-  
+  }, [data, setIngredients]);
 
+  const handleEdit = (id) => navigate(`/ingredient/manage?id=${id}`);
+  const handleAddButton = () => navigate(`/ingredient/manage`);
 
-
-   return (
+  if (ingredientsLoading) return <Spinner />;
+  if (ingredientsErr) return <Error text={ingredientsErr.message} />;
+  return (
     <PageContainer>
       <div className={styles.ingredientList}>
         <h1>Ingredient List</h1>
@@ -64,7 +50,7 @@ import Spinner from "../components/Spinner";
             {ingredients.map((ingredient) => (
               <tr key={ingredient._uuid}>
                 <td>
-                  <img src={coffeeImg} alt="ingredient image" />
+                  <img src={ingredientImg} alt="ingredient image" />
                   {ingredient.name}
                 </td>
                 <td>{ingredient.price}</td>

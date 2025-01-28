@@ -18,9 +18,11 @@ function useRequest() {
         body: !!body && method !== "GET" ? JSON.stringify(body) : undefined,
       });
 
-      if (!res.ok) throw Error("Failed To Send Data");
+      if (!res.ok) throw new Error("Failed To Send Data");
       const data = await res.json();
 
+      if (method === "POST") return data.items[0];
+      if (method === "PUT") return data;
       return data.items;
     } catch (err) {
       setError(err);
