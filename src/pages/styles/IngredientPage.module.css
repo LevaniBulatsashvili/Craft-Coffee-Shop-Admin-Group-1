@@ -1,0 +1,104 @@
+.container {
+    position: absolute;
+    width: calc(100% - 430px);
+    min-height: 80dvh;
+    padding: 16px;
+    background: #ffffff;
+  }
+  
+  .heading {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+  }
+  
+  th,
+  td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ffffff;
+  }
+  
+  th {
+    background-color: hsl(0, 0%, 100%);
+    color: black;
+    border-bottom: 2px solid #cccccc;
+  }
+  
+  td img {
+    width: 50px;
+    height: auto;
+    border-radius: 50%;
+  }
+  
+  td > button {
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    background: none;
+    color: #598eda;
+    border: none;
+  }
+  
+  td > button:hover {
+    color: #076fff;
+  }
+  
+  .table th {
+    font-size: 20px;
+    text-align: left;
+    font-weight: 500;
+    padding-left: 24px;
+    padding-right: 140px;
+  }
+  
+  .table th:last-child {
+    padding-right: 0;
+  }
+  
+  .table td:first-child {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .table td {
+    font-weight: 500;
+    padding-left: 24px;
+  }
+  
+  tr:hover {
+    background-color: #ffffff;
+  }
+  
+  .ingredientList {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .ingredientList > h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .ingredientList > button {
+    padding: 10px 20px;
+    background-color: #1d69e4;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .ingredientList > button:hover {
+    background-color: #0062ff;
+  }

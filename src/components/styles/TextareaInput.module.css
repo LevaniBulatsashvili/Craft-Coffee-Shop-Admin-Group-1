@@ -1,0 +1,32 @@
+.textarea-input {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.textarea-input > label {
+  text-transform: capitalize;
+}
+
+.textarea-input > textarea {
+  all: unset;
+  resize: none;
+  color: #000000cc;
+  height: 10rem;
+  padding: 1rem;
+  border: 1px solid #cccccc;
+  border-radius: 0.5rem;
+}
+
+.textarea-input > textarea::placeholder {
+  text-transform: capitalize;
+}
+
+.textarea-input > p {
+  color: red;
+}
+
+.textarea-input > p::first-letter {
+  text-transform: capitalize;
+}
